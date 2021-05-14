@@ -1,0 +1,161 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="main.Master.cs" Inherits="webproject.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+     <title>Web Site</title>
+    <link href="/style.css" rel="stylesheet" />
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"> </script>
+    
+    <script type="text/javascript">
+
+        $("document").ready(function () {
+            $("header nav ul li.konular-wrap").mouseover(function () {
+                $("header nav ul li.konular-wrap .konular").css("display", "block")
+            })
+            $("header nav ul li.konular-wrap").mouseleave(function () {
+                $("header nav ul li.konular-wrap .konular").css("display", "none")
+            })
+
+        })
+
+
+
+
+
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="wrapper">
+
+            <header>
+                <div class="logo">
+                    LOGO
+                </div>
+
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="/">ANASAYFA</a>
+                        </li>
+                        
+                        <li class="konular-wrap">
+                            KONULAR
+                            <div class="konular">
+                                <ul>
+                                    <li><a href="programlama.aspx">PROGRAMLMA</a> </li>
+                                    <li><a href="web.aspx">WEB TASARIM</a></li>
+                                    <li><a href="tasarım.aspx">TASARIM</a></li>
+                                </ul>
+                            </div>
+                            
+                        </li>
+                        
+                        <li>
+                            <a href="default.aspx">DUYURULAR</a>
+                        </li>
+                        
+                        <li>
+                            <a href="iletisim.aspx">İLETİŞİM</a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+                <div class="arama-wrap">
+
+                    <asp:TextBox ID="txtArama" CssClass="txtArama" runat="server" placeholder="arama"/>
+                    <asp:Button ID="btnArama" CssClass="btnArama" Text="Ara" runat="server" />
+
+
+                </div>
+
+
+
+            </header>
+
+            <div class="banner"> BİLGİSAYAR MÜHENDİSLİĞİ </div>
+            <div class="sol-taraf">
+
+                <div class="hizli-kayit">
+                    <asp:Panel ID="pnlGiris" runat="server">
+                    <div class="ust">KULLANICI GİRİŞİ</div>
+
+                    <div class="alt">
+                        <div class="Kullanici">
+                            <span>Kullanıcı Adı</span>
+                            <asp:TextBox ID="txtKullaniciAdi" CssClass="textbox" runat="server"></asp:TextBox>
+
+
+                        </div>
+                        <div class="Sifre">
+                            <span>Şifre</span>
+                            <asp:TextBox ID="txtSifre" CssClass="textbox" runat="server" TextMode="Password"></asp:TextBox>
+
+
+                        </div>
+                        
+                        
+                        <a href="Kayıtol.aspx" class="btnKayit">KAYDET</a>
+                        <asp:Button ID="btnGiris" CssClass="btnGiris" Text="GİRİŞ" runat="server"  OnClick="btnGiris_Click"/>
+                        <asp:Label ID="lblSonuc"   Text="" runat="server" />
+                        
+                    </div>
+                    </asp:Panel>
+
+                    <asp:Panel ID="pnlKullanici" runat="server" CssClass="pnlKullanici">
+
+                        Hoşgeldiniz , <asp:Label ID="lblKullaniciAdi" Text="text" runat="server" ></asp:Label><br />
+                        <asp:Button ID="btnCikis" Text="ÇIKIŞ" runat="server"  OnClick="btnCikis_Click" CssClass="KullaniciCikis"/>
+                    </asp:Panel>
+
+                </div>
+                    
+                <div class="duyurular">
+                    <div class="ust">
+                        Duyurular
+                    </div>
+                    <div class="alt">
+                        <asp:ListView ID="lstDuyuru" runat="server">
+                            <ItemTemplate>
+                                 <div class="duyuru-wrap">
+                                     <asp:Label Text='<%#Eval("Baslik")%>' runat="server" /><br />
+                                     <asp:Label Text='<%#Eval("Duyuru")%>' runat="server" /><br />
+                                     <asp:Label Text='<%#Eval("Tarih")%>' runat="server" />
+
+                                 </div>
+                            </ItemTemplate>
+                        </asp:ListView>
+                       
+                </div>
+            </div>
+
+            </div>
+            
+
+            <div class="icerik"> 
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+
+                </asp:ContentPlaceHolder>
+                <div class="ust" >
+
+                </div>
+                <div class="alt">
+                </div>
+            </div>
+            <footer> Bir Tuğçe Doğan Tasarımıdır </footer>
+
+            </div>
+        
+
+        
+    </form>
+</body>
+</html>
